@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, AppBar, Toolbar, Container, Typography, Box, IconButton, Menu, MenuItem } from '@mui/material';
 import { PersonAddAltRounded, LoginRounded, ShoppingCartRounded } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import { useAppSelector } from '../../redux/app/hooks';
@@ -27,19 +27,13 @@ export default function Navbar() {
             border-color: #f5f5f5;
         }
 
-        a{
-            color: #3A5E74;
-            text-decoration: none;
-            display: flex;
-            width: 100%;
-        }
-
         .link-text{
             margin-left: 8px;
         }
 
         @media (max-width: 600px) {
             min-width: 44px;
+            min-height: 24px;
             padding: 1px 1px;
             margin-left: 10px;
             span{
@@ -112,13 +106,11 @@ export default function Navbar() {
                             >
 
                                 {pages.map((page, index) => (
-                                    <MenuItem onClick={handleCloseNavMenu}>
-                                        <NavLinkButton
-                                            key={index}
-                                        >
+                                    <NavLink to={page.toLowerCase() !== 'home' ? `/${page.toLowerCase()}` : '/'}>
+                                        <MenuItem key={index} onClick={handleCloseNavMenu} >
                                             {page}
-                                        </NavLinkButton>
-                                    </MenuItem>
+                                        </MenuItem>
+                                    </NavLink>
                                 ))}
 
                             </Menu>
@@ -129,7 +121,9 @@ export default function Navbar() {
                             component="div"
                             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                         >
-                            Shoping App
+                            <Link to={'/'}>
+                                Shoping App
+                            </Link>
                         </Typography>
                         {/*Mobil End */}
 
@@ -137,49 +131,60 @@ export default function Navbar() {
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page, index) => (
-                                <NavLinkButton
-                                    key={index}
+                                <NavLink
+                                    to={page.toLowerCase() !== 'home' ? `/${page.toLowerCase()}` : '/'}
                                 >
-                                    <Link
-                                        to={page.toLowerCase() !== 'home' ? `/${page.toLowerCase()}` : '/'}
+                                    <NavLinkButton
+                                        key={index}
                                     >
+
                                         {page}
-                                    </Link>
-                                </NavLinkButton>
+
+                                    </NavLinkButton>
+                                </NavLink>
                             ))}
                         </Box>
                         <Box sx={{ flexGrow: 0, display: 'flex' }}>
-                            <NavLinkButton
-                                variant="outlined"
-                            >
-                                <LoginRounded />
-                                <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
-                                    Login
-                                </Typography>
-                            </NavLinkButton>
-                            <NavLinkButton
-                                variant="outlined"
-                            >
-                                <PersonAddAltRounded />
 
-                                <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
-                                    Register
-                                </Typography>
+                            <NavLink to={'/login'}>
+                                <NavLinkButton
+                                    variant="outlined"
+                                >
+                                    <LoginRounded />
+                                    <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
+                                        Login
+                                    </Typography>
+                                </NavLinkButton>
+                            </NavLink>
+
+                            <NavLink to={'/register'}>
+                                <NavLinkButton
+                                    variant="outlined"
+                                >
+                                    <PersonAddAltRounded />
+
+                                    <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
+                                        Register
+                                    </Typography>
 
 
-                            </NavLinkButton>
-                            <NavLinkButton
-                                variant="outlined"
-                            >
-                                <ShoppingCartRounded />
-                                <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
-                                    Cart
-                                </Typography>
-                                <Typography sx={{ ml: '2px' }} component={'span'}>
-                                    ({basketTotal})
-                                </Typography>
+                                </NavLinkButton>
+                            </NavLink>
 
-                            </NavLinkButton>
+                            <NavLink to={'/cart'}>
+                                <NavLinkButton
+                                    variant="outlined"
+                                >
+                                    <ShoppingCartRounded />
+                                    <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
+                                        Cart
+                                    </Typography>
+                                    <Typography sx={{ ml: '2px' }} component={'span'}>
+                                        ({basketTotal})
+                                    </Typography>
+
+                                </NavLinkButton>
+                            </NavLink>
                         </Box>
 
 
