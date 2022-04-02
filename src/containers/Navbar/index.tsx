@@ -4,9 +4,20 @@ import { PersonAddAltRounded, LoginRounded, ShoppingCartRounded } from '@mui/ico
 import { Link, NavLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
-import { useAppSelector } from '../../redux/app/hooks';
+import { useAppSelector, useAppDispatch } from '../../redux/app/hooks';
+import {useCurrentUser, useIsLoggedIn} from "../../config/hooks";
+import { logOut } from "../../redux/slices/authSlice";
 
 export default function Navbar() {
+
+    const currentUser = useCurrentUser();
+    const isLoggedIn = useIsLoggedIn();
+    const dispatch = useAppDispatch();
+
+    // @ts-ignore
+    const displayName = currentUser?.displayName;
+    // @ts-ignore
+    const email = currentUser?.email;
 
     const basketTotal = useAppSelector(state => state.basket.basketTotal);
 
@@ -145,31 +156,43 @@ export default function Navbar() {
                             ))}
                         </Box>
                         <Box sx={{ flexGrow: 0, display: 'flex' }}>
+                            {!isLoggedIn ? (
+                                <>
+                                    <NavLink to={'/login'}>
+                                        <NavLinkButton
+                                            variant="outlined"
+                                        >
+                                            <LoginRounded />
+                                            <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
+                                                Login
+                                            </Typography>
+                                        </NavLinkButton>
+                                    </NavLink>
 
-                            <NavLink to={'/login'}>
-                                <NavLinkButton
-                                    variant="outlined"
-                                >
-                                    <LoginRounded />
-                                    <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
-                                        Login
-                                    </Typography>
-                                </NavLinkButton>
-                            </NavLink>
+                                    <NavLink to={'/register'}>
+                                        <NavLinkButton
+                                            variant="outlined"
+                                        >
+                                            <PersonAddAltRounded />
 
-                            <NavLink to={'/register'}>
-                                <NavLinkButton
-                                    variant="outlined"
-                                >
-                                    <PersonAddAltRounded />
-
-                                    <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
-                                        Register
-                                    </Typography>
+                                            <Typography className='link-text' sx={{ display: { xs: 'none', lg: 'block' } }} component={'span'}>
+                                                Register
+                                            </Typography>
 
 
-                                </NavLinkButton>
-                            </NavLink>
+                                        </NavLinkButton>
+                                    </NavLink>
+                                </>
+                            ):
+                                (
+                                    <>
+                                        {displayName}
+                                        <Button onClick={() => dispatch(logOut())}>
+                                            Logout
+                                        </Button>
+                                    </>
+                                )
+                            }
 
                             <NavLink to={'/cart'}>
                                 <NavLinkButton

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from  '../app/store';
 
-export interface BasketItem {
+interface BasketItem {
     id: number;
     name: string;
     price: number;
@@ -9,7 +9,7 @@ export interface BasketItem {
     quantity: number;
 }
 
-export interface BasketState {
+interface BasketState {
     basketItems: BasketItem[];
     basketTotal: number;
 }
@@ -43,8 +43,5 @@ export const basketSlice = createSlice({
 });
 
 export const { addItem, removeItem } = basketSlice.actions;
-
-export const basketItems = (state: RootState) => state.basket.basketItems;
-export const basketTotal = (state: RootState) => state.basket.basketTotal;
 
 export default basketSlice.reducer;
