@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import AppLayout from '../layouts/AppLayout';
+import AuthLayout from '../layouts/AuthLayout';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
 import About from '../pages/About';
@@ -16,9 +17,11 @@ export default function Routers() {
                 <Route path='/products' element={<Products />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/contact' element={<Contact />} />
+                <Route path='/cart' element={<Cart />} />
+            </Route>
+            <Route element={<AuthLayout />}>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
-                <Route path='/cart' element={<Cart />} />
             </Route>
         </Routes>
     )
