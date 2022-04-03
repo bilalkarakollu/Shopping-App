@@ -1,6 +1,7 @@
-import {Outlet, Navigate} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import { useIsLoggedIn } from "../config/hooks";
 import Navbar from '../containers/Navbar';
+import { Box } from '@mui/material';
 
 export default function AppLayout() {
 

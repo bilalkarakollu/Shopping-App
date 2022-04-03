@@ -19,7 +19,7 @@ export default function Navbar() {
     // @ts-ignore
     const email = currentUser?.email;
 
-    const basketTotal = useAppSelector(state => state.basket.basketTotal);
+    const basketCount = useAppSelector(state => state.basket.basketCount);
 
     const NavLinkButton = styled(Button)`
         color: #3A5E74;
@@ -203,7 +203,7 @@ export default function Navbar() {
                                         Cart
                                     </Typography>
                                     <Typography sx={{ ml: '2px' }} component={'span'}>
-                                        ({basketTotal})
+                                        ({basketCount})
                                     </Typography>
 
                                 </NavLinkButton>
