@@ -9,9 +9,14 @@ You can check the site here
 
 ## Topics
 
-- Redux
-- Material UI
+- React
+- Redux Toolkit
 - Typescript
+- Material UI
+- Styled Component
+- React Router DOM V6
+- React Toastify
+- Firebase
 - Axios
 - Full login functionality (sign up and sign in) with firebase authentication,
 - Firebase for real time database
@@ -20,7 +25,7 @@ You can check the site here
 
 ## Author
 
-bilalkarakolly
+bilalkarakollu
 
 ### `npm start`
 
