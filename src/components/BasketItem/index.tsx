@@ -38,7 +38,7 @@ export default function BasketItem(props:PropsType){
     }
 
     return(
-        <Grid container spacing={2} my={3} py={1} alignItems={'center'} justifyContent={'center'} border={'1px solid #e8e8e8'}>
+        <Grid container spacing={2} my={3} p={1} alignItems={'center'} justifyContent={'center'} border={'1px solid #e8e8e8'}>
             <Grid item xs={12} sm={6}>
                 <Box height={'280px'}>
                     <Box component={'img'} src={product.image} alt={product.title} width={'100%'} height={'100%'} sx={{objectFit:'contain', objectPosition:'center'}}/>
@@ -51,13 +51,13 @@ export default function BasketItem(props:PropsType){
             </Grid>
             <Grid item xs={4} sm={2} textAlign={'center'}>
                 <Box display={'flex'}>
-                    <Button size={'small'} variant={'outlined'} onClick={()=> handleRemoveProduct(product.id)}>
+                    <Button sx={{minWidth:'inherit'}} size={'small'} variant={'outlined'} onClick={()=> handleRemoveProduct(product.id)}>
                         <RemoveOutlinedIcon fontSize={'small'}/>
                     </Button>
                     <Typography fontSize={'large'} fontWeight={'bold'} py={1} px={1}>
                         {product.quantity}
                     </Typography>
-                    <Button size={'small'} variant={'outlined'} onClick={()=> handleAddProduct(product)}>
+                    <Button sx={{minWidth:'inherit'}} size={'small'} variant={'outlined'} onClick={()=> handleAddProduct(product)}>
                         <AddOutlinedIcon fontSize={'small'}/>
                     </Button>
                 </Box>

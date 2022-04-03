@@ -61,7 +61,7 @@ export default function Product(){
             <Grid container spacing={3} minHeight={'90vh'} alignItems={'center'}>
                 <Grid item xs={12} md={6}>
                     {!loading ?
-                        <Box component={'img'} src={product.image} width={'100%'} height={'100%'} sx={{objectFit:'contain', objectPosition:'center'}}/>
+                        <Box component={'img'} src={product.image} width={'100%'} height={'100%'} maxHeight={'50vh'} sx={{objectFit:'contain', objectPosition:'center'}}/>
                         :
                         <Skeleton width={'100%'} height={'80vh'}/>
                     }

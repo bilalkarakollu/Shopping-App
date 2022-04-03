@@ -6,7 +6,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import { useAppSelector, useAppDispatch } from '../../redux/app/hooks';
 import {useCurrentUser, useIsLoggedIn} from "../../config/hooks";
-import { logOut } from "../../redux/slices/authSlice";
+
+import UserMenu from "./userMenu";
 
 export default function Navbar() {
 
@@ -184,14 +185,7 @@ export default function Navbar() {
                                     </NavLink>
                                 </>
                             ):
-                                (
-                                    <>
-                                        {displayName}
-                                        <Button onClick={() => dispatch(logOut())}>
-                                            Logout
-                                        </Button>
-                                    </>
-                                )
+                                <UserMenu name={email}/>
                             }
 
                             <NavLink to={'/cart'}>
